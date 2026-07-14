@@ -19,12 +19,14 @@ Everything else is the tooling your team already uses: pnpm workspaces, TypeScri
 | Capability | Where in this repo | Docs |
 |---|---|---|
 | Publish packages to bit.cloud with plain `npm`/`pnpm` | [`package.json` scripts](./package.json), any `packages/*` | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
-| Bulk publish (all packages, dependency order) | `pnpm publish:all` / [manual workflow](./.github/workflows/publish-manual.yml) | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
+| Bulk publish (all packages, atomically via `--batch`) | `pnpm publish:all` / [manual workflow](./.github/workflows/publish-manual.yml) | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 | Individual publish (one package) | `pnpm --filter @evinova-demo/button publish` / manual workflow dropdown | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 | Automated releases — only changed packages | [Changesets](./.changeset) + [`release.yml`](./.github/workflows/release.yml) | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
 | Registry auth, local and CI, zero secrets in-repo | [`.npmrc`](./.npmrc) + `BIT_CLOUD_TOKEN` | [Configuring .npmrc](https://bit.cloud/docs/packages/configuring-npmrc) |
 | Works alongside npmjs / other registries | scoped registry — only `@evinova-demo/*` touches bit.cloud | [External registries](https://bit.cloud/docs/packages/external-registries) |
 | Hosted docs & READMEs per package/version | each package's `README.md`, rendered on its bit.cloud page | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
+| Atomic bulk publish (one request, one CI build) | `pnpm publish -r --batch` via `pnpm publish:all` | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
+| Live component previews from plain packages | `*.composition.tsx` files in [button](./packages/button) & [card](./packages/card) | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 
 ## The packages
 
@@ -47,6 +49,8 @@ graph TD
 
 Internal dependencies use pnpm's `workspace:*` protocol. At publish time pnpm rewrites them to the real versions (e.g. `0.1.0`), so consumers installing `@evinova-demo/button` pull `theme` and `utils` from the bit.cloud registry automatically.
 
+**How package names map to components.** `@evinova-demo/button` becomes the component `evinova-demo.general/button` on bit.cloud — scope-less package names fall back to the org's `general` scope. Publishing to a scope that doesn't exist yet auto-creates it, so there's no separate provisioning step before the first publish.
+
 ## Quickstart
 
 ### 1. Get a bit.cloud token
@@ -56,6 +60,8 @@ Grab a token from your [bit.cloud settings](https://bit.cloud/settings/access-to
 ```bash
 export BIT_CLOUD_TOKEN="<your token>"
 ```
+
+Prefer an interactive login instead? `npm login --registry=https://node-registry.bit.cloud` (or `bit login`) works too — both produce the same token, just choose whichever fits your workflow.
 
 ### 2. Install, build, test
 
@@ -69,9 +75,11 @@ pnpm test
 
 ```bash
 pnpm publish:dry                                # rehearsal, publishes nothing
-pnpm publish:all                                # bulk: every package, dependency order
+pnpm publish:all                                # bulk: pnpm publish -r --batch — atomic, one request, one Ripple CI build
 pnpm --filter @evinova-demo/button publish      # individual: one package
 ```
+
+`publish:all` sends every package to the registry in a single batched request (`pnpm publish -r --batch`): all five publish together or none do. Cross-package links (`workspace:*` → real versions) land correctly in the dependency graph regardless of the order packages are declared in.
 
 Published packages appear at **https://bit.cloud/evinova-demo** — each with its README rendered, versions listed, and install instructions for npm/pnpm/yarn.
 
@@ -103,6 +111,8 @@ pnpm changeset          # pick packages + semver bump, describe the change
 - **Scoped, not global** — only `@evinova-demo/*` resolves from bit.cloud; everything else stays on npmjs (or proxy npmjs through bit.cloud — see [external registries](https://bit.cloud/docs/packages/external-registries)).
 - **Team & org management** — access control per org/scope on [bit.cloud](https://bit.cloud/evinova-demo).
 - **A path to more** — the same packages can later graduate to full Bit components (compositions, previews, dependency graphs, Ripple CI) without changing how consumers install them.
+- **Every version is a built component** — each published version is mirrored as a component and built by Ripple CI; a version only becomes installable once its build succeeds.
+- **Compositions and docs ship from your tarball** — no separate docs site: your `README.md` becomes the overview page, and any `*.composition.*` file becomes a live, rendered example on the component's bit.cloud page.
 
 ## Troubleshooting
 

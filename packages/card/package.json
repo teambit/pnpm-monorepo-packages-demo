@@ -8,6 +8,7 @@
     "url": "https://github.com/teambit/pnpm-monorepo-packages-demo",
     "directory": "packages/card"
   },
+  "bitEnv": "bitdev.react/react-env",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -19,7 +20,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": ["dist", "*.composition.tsx"],
   "sideEffects": false,
   "keywords": ["react", "card", "design-system", "evinova-demo"],
   "scripts": {
@@ -31,7 +32,8 @@
   },
   "dependencies": {
     "@evinova-demo/theme": "workspace:*",
-    "@evinova-demo/utils": "workspace:*"
+    "@evinova-demo/utils": "workspace:*",
+    "@evinova-demo/button": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"
