@@ -24,8 +24,7 @@
   "keywords": ["utils", "classnames", "evinova-demo"],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
-    "test": "vitest run",
-    "prepublishOnly": "pnpm build"
+    "test": "vitest run"
   },
   "publishConfig": {
     "registry": "https://node-registry.bit.cloud",

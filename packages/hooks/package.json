@@ -24,8 +24,7 @@
   "keywords": ["react", "hooks", "evinova-demo"],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
-    "test": "vitest run --environment jsdom",
-    "prepublishOnly": "pnpm build"
+    "test": "vitest run --environment jsdom"
   },
   "publishConfig": {
     "registry": "https://node-registry.bit.cloud",

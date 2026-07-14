@@ -23,8 +23,7 @@
   "sideEffects": false,
   "keywords": ["react", "button", "design-system", "evinova-demo"],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --clean",
-    "prepublishOnly": "pnpm build"
+    "build": "tsup src/index.tsx --format esm,cjs --dts --clean"
   },
   "publishConfig": {
     "registry": "https://node-registry.bit.cloud",

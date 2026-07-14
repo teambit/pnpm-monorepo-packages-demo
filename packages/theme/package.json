@@ -23,8 +23,7 @@
   "sideEffects": false,
   "keywords": ["design-tokens", "theme", "evinova-demo"],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
-    "prepublishOnly": "pnpm build"
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean"
   },
   "publishConfig": {
     "registry": "https://node-registry.bit.cloud",
