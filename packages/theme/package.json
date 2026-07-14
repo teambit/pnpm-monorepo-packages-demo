@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Design tokens (colors, spacing, radii, typography) for the Evinova demo design system",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teambit/pnpm-monorepo-packages-demo",
+    "directory": "packages/theme"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

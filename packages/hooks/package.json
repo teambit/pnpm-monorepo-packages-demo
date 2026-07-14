@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Reusable React hooks: useToggle, useDebounce",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teambit/pnpm-monorepo-packages-demo",
+    "directory": "packages/hooks"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

@@ -1,5 +1,7 @@
 # Evinova Packages Demo
 
+[![CI](https://github.com/teambit/pnpm-monorepo-packages-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/teambit/pnpm-monorepo-packages-demo/actions/workflows/ci.yml)
+
 **A completely ordinary pnpm monorepo that publishes to [bit.cloud](https://bit.cloud) — no Bit CLI, no Bit config, no lock-in.**
 
 The entire Bit integration is **one file** ([`.npmrc`](./.npmrc)) — a registry URL and a token:
