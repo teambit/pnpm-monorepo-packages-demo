@@ -1,0 +1,41 @@
+{
+  "name": "@evinova-demo/card",
+  "version": "0.1.0",
+  "description": "Content card with optional title, built on the Evinova demo theme",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "keywords": ["react", "card", "design-system", "evinova-demo"],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --clean",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "registry": "https://node-registry.bit.cloud",
+    "access": "public"
+  },
+  "dependencies": {
+    "@evinova-demo/theme": "workspace:*",
+    "@evinova-demo/utils": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "react": "^19.1.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.0"
+  }
+}
