@@ -8,7 +8,7 @@ Design tokens for the Evinova demo design system — colors, spacing, radii and 
 pnpm add @evinova-demo/theme
 ```
 
-> Requires the bit.cloud registry configured for the `@evinova-demo` scope — see the [repo root README](https://github.com/luvkapur/evinova-packages-demo#readme).
+> Requires the bit.cloud registry configured for the `@evinova-demo` scope — see [Configuring .npmrc](https://bit.cloud/docs/packages/configuring-npmrc).
 
 ## Usage
 

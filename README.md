@@ -43,7 +43,7 @@ graph TD
 | [`@evinova-demo/button`](./packages/button) | Button component consuming theme + utils |
 | [`@evinova-demo/card`](./packages/card) | Card component consuming theme + utils |
 
-Internal dependencies use pnpm's `workspace:*` protocol. At publish time pnpm rewrites them to real semver ranges, so consumers installing `@evinova-demo/button` pull `theme` and `utils` from the bit.cloud registry automatically.
+Internal dependencies use pnpm's `workspace:*` protocol. At publish time pnpm rewrites them to the real versions (e.g. `0.1.0`), so consumers installing `@evinova-demo/button` pull `theme` and `utils` from the bit.cloud registry automatically.
 
 ## Quickstart
 
