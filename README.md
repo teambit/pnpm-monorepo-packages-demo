@@ -119,7 +119,7 @@ pnpm changeset          # pick packages + semver bump, describe the change
 - **Team & org management** — access control per org/scope on [bit.cloud](https://bit.cloud/evinova-demo).
 - **A path to more** — the same packages can later graduate to full Bit components (compositions, previews, dependency graphs, Ripple CI) without changing how consumers install them.
 - **Every version is a built component** — each published version is mirrored as a component and built by Ripple CI; a version only becomes installable once its build succeeds.
-- **Compositions and docs ship from your tarball** — no separate docs site: your `README.md` becomes the overview page, and any `*.composition.*` file becomes a live, rendered example on the component's bit.cloud page.
+- **Compositions and docs ship from your tarball** — no separate docs site: your `README.md` becomes the overview page, and any `*.composition.*` file becomes a live, rendered example on the component's bit.cloud page. Composition files import their own package via a relative path (e.g. `./dist/index.js`, since that's what actually ships in the tarball) and import any other packages by their package name.
 
 ## Troubleshooting
 

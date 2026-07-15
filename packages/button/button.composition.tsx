@@ -1,4 +1,4 @@
-import { Button } from '@evinova-demo/general.button';
+import { Button } from './dist/index.js';
 
 export const Primary = () => <Button>Save changes</Button>;
 export const Secondary = () => <Button variant="secondary">Cancel</Button>;

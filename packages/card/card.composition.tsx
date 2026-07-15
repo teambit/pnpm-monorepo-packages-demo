@@ -1,4 +1,4 @@
-import { Card } from '@evinova-demo/general.card';
+import { Card } from './dist/index.js';
 import { Button } from '@evinova-demo/general.button';
 
 export const WithTitle = () => (
