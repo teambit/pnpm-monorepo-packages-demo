@@ -83,6 +83,8 @@ pnpm --filter @evinova-demo/button publish      # individual: one package
 
 `publish:all` sends every package to the registry in a single batched request (`pnpm publish -r --batch`): all five publish together or none do. Cross-package links (`workspace:*` → real versions) land correctly in the dependency graph regardless of the order packages are declared in.
 
+> **Interdependent packages should ship as a batch.** `button` and `card` depend on `theme` and `utils` — a batch guarantees those links resolve as first-class dependencies in the graph no matter the order. Reserve individual publishing for a package whose dependencies are already on the registry; if you publish one-by-one, publish dependencies before dependents.
+
 Published packages appear at **https://bit.cloud/evinova-demo** — each with its README rendered, versions listed, and install instructions for npm/pnpm/yarn.
 
 ## CI/CD (GitHub Actions)
