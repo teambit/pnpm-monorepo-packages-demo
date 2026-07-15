@@ -8,7 +8,6 @@
     "url": "https://github.com/teambit/pnpm-monorepo-packages-demo",
     "directory": "packages/button"
   },
-  "bitEnv": "bitdev.react/react-env",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
