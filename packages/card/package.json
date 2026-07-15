@@ -21,6 +21,7 @@
   },
   "files": [
     "dist",
+    "src",
     "*.composition.tsx"
   ],
   "sideEffects": false,
@@ -31,7 +32,7 @@
     "evinova-demo"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --clean"
+    "build": "tsup src/index.tsx --format esm,cjs --dts --sourcemap --clean"
   },
   "publishConfig": {
     "registry": "https://node-registry.bit.cloud",

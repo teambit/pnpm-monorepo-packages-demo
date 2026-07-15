@@ -29,6 +29,7 @@ Everything else is the tooling your team already uses: pnpm workspaces, TypeScri
 | Hosted docs & READMEs per package/version | each package's `README.md`, rendered on its bit.cloud page | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 | Atomic bulk publish (one request, one CI build) | `pnpm publish -r --batch` via `pnpm publish:all` | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
 | Live component previews from plain packages | `*.composition.tsx` files in [button](./packages/button) & [card](./packages/card) | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
+| Real source & tests on the component page | every package ships src/ + sourcemaps alongside dist/ | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 
 ## The packages
 
@@ -120,6 +121,7 @@ pnpm changeset          # pick packages + semver bump, describe the change
 - **A path to more** — the same packages can later graduate to full Bit components (compositions, previews, dependency graphs, Ripple CI) without changing how consumers install them.
 - **Every version is a built component** — each published version is mirrored as a component and built by Ripple CI; a version only becomes installable once its build succeeds.
 - **Compositions and docs ship from your tarball** — no separate docs site: your `README.md` becomes the overview page, and any `*.composition.*` file becomes a live, rendered example on the component's bit.cloud page. Composition files import their own package via a relative path (e.g. `./dist/index.js`, since that's what actually ships in the tarball) and import any other packages by their package name.
+- **Real source and tests on the component page** — every package ships its `src/` directory and sourcemaps alongside `dist/`. Consumers still install and import the prebuilt bundle via `exports`, but bit.cloud picks up the source files from the published tarball and renders them on the component page. Files named `*.test.*` are classified as tests, so the vitest suites show up as component tests too.
 
 ## Troubleshooting
 
