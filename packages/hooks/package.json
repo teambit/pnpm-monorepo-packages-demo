@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/hooks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable React hooks: useToggle, useDebounce",
   "license": "MIT",
   "repository": {
@@ -19,9 +19,15 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
-  "keywords": ["react", "hooks", "evinova-demo"],
+  "keywords": [
+    "react",
+    "hooks",
+    "evinova-demo"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "test": "vitest run --environment jsdom"

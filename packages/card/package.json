@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/card",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Content card with optional title, built on the Evinova demo theme",
   "license": "MIT",
   "repository": {
@@ -19,9 +19,17 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "*.composition.tsx"],
+  "files": [
+    "dist",
+    "*.composition.tsx"
+  ],
   "sideEffects": false,
-  "keywords": ["react", "card", "design-system", "evinova-demo"],
+  "keywords": [
+    "react",
+    "card",
+    "design-system",
+    "evinova-demo"
+  ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --clean"
   },

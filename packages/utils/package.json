@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tiny framework-free utilities: class-name composition, truncation, date formatting",
   "license": "MIT",
   "repository": {
@@ -19,9 +19,15 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
-  "keywords": ["utils", "classnames", "evinova-demo"],
+  "keywords": [
+    "utils",
+    "classnames",
+    "evinova-demo"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "test": "vitest run"

@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/button",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Themeable React button - primary, secondary and ghost variants",
   "license": "MIT",
   "repository": {
@@ -19,9 +19,17 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "*.composition.tsx"],
+  "files": [
+    "dist",
+    "*.composition.tsx"
+  ],
   "sideEffects": false,
-  "keywords": ["react", "button", "design-system", "evinova-demo"],
+  "keywords": [
+    "react",
+    "button",
+    "design-system",
+    "evinova-demo"
+  ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --clean"
   },
