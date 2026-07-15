@@ -114,6 +114,24 @@ pnpm changeset          # pick packages + semver bump, describe the change
 
 **Controlling the release notes.** The message you write in `pnpm changeset` travels with the release: it becomes the entry in each affected package's `CHANGELOG.md` (written by the Version Packages PR), shows up in the matching GitHub Release, and ships inside the published tarball (see each package's `files` field) so consumers get the changelog right in `node_modules`. Write changeset messages for the consumers of your packages — they're what people see next to each version.
 
+## How it works — no magic
+
+Everything on the bit.cloud side is derived from what a standard npm client already sends. The entire pipeline:
+
+```mermaid
+flowchart LR
+    A["pnpm publish -r --batch<br/>(standard npm PUT)"] --> B["node-registry.bit.cloud<br/>npm-protocol registry"]
+    B --> C["Mirror as component<br/>@evinova-demo/general.button → evinova-demo.general/button"]
+    C --> D["Ripple CI builds the version<br/>compile · render compositions · extract API"]
+    D --> E["Component page + installable version<br/>(npm GET, any client)"]
+```
+
+1. **Publish is just the npm protocol.** `pnpm publish` sends the same HTTP PUT it would send to npmjs — manifest plus tarball (`--batch` bundles the workspace into one atomic request). No plugin, no wrapper, no post-processing step in your repo or CI.
+2. **The name is the address.** `@evinova-demo/general.button` deterministically maps to component `evinova-demo.general/button`: npm scope = org, segment before the dot = bit.cloud scope, the rest = component name. That's why there's no provisioning — the name carries all the routing.
+3. **The registry opens the tarball instead of just storing it.** Files are classified by name: `README.md` → overview page, `*.composition.*` → live examples, everything else under `src/` → the source view. `description` and `keywords` from package.json become the component description and labels. **Everything you see on the component page traces back to a file you chose to ship in `files`.**
+4. **Every version gets built.** Ripple CI compiles the version, renders the compositions into live previews, and extracts the API reference. A version becomes installable only after its build succeeds — so the registry can't serve you something that doesn't build.
+5. **Install is the npm protocol again.** Consumers run plain `pnpm add` / `npm install`; internal dependencies resolve from the same registry because the published manifests carry real versions (pnpm rewrote `workspace:*` at publish time).
+
 ## Why bit.cloud as a registry?
 
 - **Zero migration** — this repo is proof: one `.npmrc` file, standard tooling.
