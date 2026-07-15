@@ -4,13 +4,13 @@
 
 **A completely ordinary pnpm monorepo that publishes to [bit.cloud](https://bit.cloud) — no Bit CLI, no Bit config, no lock-in.**
 
-The entire Bit integration is **one file** ([`.npmrc`](./.npmrc)) — a registry URL and a token:
+The entire Bit integration is **one committed line** ([`.npmrc`](./.npmrc)) mapping the `@evinova-demo` scope to the bit.cloud registry:
 
 ```ini
 @evinova-demo:registry=https://node-registry.bit.cloud
-//node-registry.bit.cloud/:_authToken=${BIT_CLOUD_TOKEN}
-always-auth=true
 ```
+
+Credentials never enter the repo. One-time locally: `pnpm config set "//node-registry.bit.cloud/:_authToken" <token>` (or `npm login --registry=https://node-registry.bit.cloud`). In CI: a `BIT_CLOUD_TOKEN` GitHub secret plus the same `pnpm config set` step, run once before install.
 
 Packages publish under the `@evinova-demo` placeholder scope — point it at your own bit.cloud org with a single find-and-replace.
 
@@ -60,10 +60,10 @@ Internal dependencies use pnpm's `workspace:*` protocol. At publish time pnpm re
 Grab a token from your [bit.cloud settings](https://bit.cloud/settings/access-tokens) (or `bit config get user.token` on a machine where you've run `bit login` — no Bit CLI needed otherwise).
 
 ```bash
-export BIT_CLOUD_TOKEN="<your token>"
+pnpm config set "//node-registry.bit.cloud/:_authToken" "<your token>"
 ```
 
-Prefer an interactive login instead? `npm login --registry=https://node-registry.bit.cloud` (or `bit login`) works too — both produce the same token, just choose whichever fits your workflow.
+Prefer an interactive login instead? `npm login --registry=https://node-registry.bit.cloud` (or `bit login`) works too — both produce the same token, just choose whichever fits your workflow. Either way the credential is stored user-level, never in this repo.
 
 ### 2. Install, build, test
 
@@ -118,6 +118,7 @@ pnpm changeset          # pick packages + semver bump, describe the change
 
 ## Troubleshooting
 
-- **`WARN Issue while reading ".../.npmrc"` / `Failed to replace env in config: ${BIT_CLOUD_TOKEN}` on install** — `pnpm install` still exits `0`, but export the variable to silence it: `export BIT_CLOUD_TOKEN=""` (an empty string is fine for install-only; a real token is only required to publish).
 - **401/403 on publish** — token missing/expired, or your bit.cloud user lacks write access to the `evinova-demo` org.
 - **"version already exists"** — the registry is immutable per version (a feature); bump with `pnpm changeset` and republish.
+- **`Ignored project-level auth setting "//node-registry.bit.cloud/:_authToken" in .npmrc: environment variables are not expanded in registry credentials that come from a project .npmrc`** — pnpm ≥11 no longer honors credentials committed in a project `.npmrc`. Configure the token user-level instead: `pnpm config set "//node-registry.bit.cloud/:_authToken" <token>` (or `npm login --registry=https://node-registry.bit.cloud`); CI does the same via the "Configure registry auth" step in the workflows.
+- **`ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`** — pnpm ≥11's supply-chain policy blocks installing packages published more recently than `minimumReleaseAge` (minutes) allows. This demo sets `minimumReleaseAge: 0` in [`pnpm-workspace.yaml`](./pnpm-workspace.yaml) so it's always installable; real projects often raise this to quarantine brand-new releases.

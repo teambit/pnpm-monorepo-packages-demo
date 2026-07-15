@@ -2,3 +2,7 @@ packages:
   - "packages/*"
 allowBuilds:
   esbuild: true
+
+# Supply-chain policy: 0 keeps the demo installable at all times.
+# Real projects often set e.g. 1440 (minutes) to quarantine brand-new releases.
+minimumReleaseAge: 0

@@ -22,6 +22,8 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+      - name: Configure registry auth
+        run: pnpm config set "//node-registry.bit.cloud/:_authToken" "$BIT_CLOUD_TOKEN"
       - run: pnpm install --frozen-lockfile
 
       # Opens/updates a "Version Packages" PR when changesets exist;
