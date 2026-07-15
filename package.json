@@ -9,9 +9,9 @@
     "test": "pnpm -r --if-present test",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish",
+    "release": "pnpm build && pnpm -r publish --batch --no-git-checks && changeset tag",
     "publish:all": "pnpm build && pnpm -r publish --batch --no-git-checks",
-    "publish:dry": "pnpm build && pnpm -r publish --dry-run --no-git-checks"
+    "publish:dry": "pnpm build && pnpm -r publish --batch --dry-run --no-git-checks"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.0"

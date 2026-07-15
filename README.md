@@ -23,7 +23,7 @@ Everything else is the tooling your team already uses: pnpm workspaces, TypeScri
 | Publish packages to bit.cloud with plain `npm`/`pnpm` | [`package.json` scripts](./package.json), any `packages/*` | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
 | Bulk publish (all packages, atomically via `--batch`) | `pnpm publish:all` / [manual workflow](./.github/workflows/publish-manual.yml) | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 | Individual publish (one package) | `pnpm --filter @evinova-demo/button publish` / manual workflow dropdown | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
-| Automated releases — only changed packages | [Changesets](./.changeset) + [`release.yml`](./.github/workflows/release.yml) | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
+| Automated releases — one atomic batch publish | [Changesets](./.changeset) + [`release.yml`](./.github/workflows/release.yml) | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
 | Registry auth, local and CI, zero secrets in-repo | [`.npmrc`](./.npmrc) + `BIT_CLOUD_TOKEN` | [Configuring .npmrc](https://bit.cloud/docs/packages/configuring-npmrc) |
 | Works alongside npmjs / other registries | scoped registry — only `@evinova-demo/*` touches bit.cloud | [External registries](https://bit.cloud/docs/packages/external-registries) |
 | Hosted docs & READMEs per package/version | each package's `README.md`, rendered on its bit.cloud page | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
@@ -90,7 +90,7 @@ Published packages appear at **https://bit.cloud/evinova-demo** — each with it
 | Workflow | Trigger | What it does |
 |---|---|---|
 | [CI](./.github/workflows/ci.yml) | every PR / push to main | install → build → test |
-| [Release](./.github/workflows/release.yml) | push to main | Changesets opens a "Version Packages" PR; merging it publishes **only the changed packages** |
+| [Release](./.github/workflows/release.yml) | push to main | Changesets opens a "Version Packages" PR; merging it publishes the whole workspace as **one atomic batch request** — all-or-nothing, one combined Ripple CI build; pnpm skips versions already on the registry, so only the new versions actually ship |
 | [Publish (manual)](./.github/workflows/publish-manual.yml) | manual dispatch | dropdown: publish one package or all, on demand |
 
 One-time setup: add `BIT_CLOUD_TOKEN` as a repo secret (`Settings → Secrets and variables → Actions`).
@@ -101,7 +101,10 @@ One-time setup: add `BIT_CLOUD_TOKEN` as a repo secret (`Settings → Secrets an
 # 1. Make a change, then declare it:
 pnpm changeset          # pick packages + semver bump, describe the change
 # 2. Merge the PR. The Release workflow opens "chore: version packages".
-# 3. Merge that PR → changed packages publish to bit.cloud. Done.
+# 3. Merge that PR → the whole workspace publishes to bit.cloud as one atomic
+#    batch request (all-or-nothing, one combined Ripple CI build). pnpm skips
+#    any version already on the registry, so only the newly-bumped packages
+#    actually ship. Done.
 ```
 
 (A changeset on a shared package like `utils` cascades: Changesets automatically patch-bumps the packages that depend on it — `button` and `card` — so downstream consumers always get a compatible, republished version.)

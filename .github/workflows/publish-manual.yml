@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish all packages (bulk)
         if: inputs.package == 'all'
-        run: pnpm -r publish --no-git-checks
+        run: pnpm -r publish --batch --no-git-checks
 
       - name: Publish one package
         if: inputs.package != 'all'
