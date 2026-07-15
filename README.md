@@ -112,6 +112,8 @@ pnpm changeset          # pick packages + semver bump, describe the change
 
 (A changeset on a shared package like `utils` cascades: Changesets automatically patch-bumps the packages that depend on it — `button` and `card` — so downstream consumers always get a compatible, republished version.)
 
+**Controlling the release notes.** The message you write in `pnpm changeset` travels the whole way: it becomes the entry in each affected package's `CHANGELOG.md` (written by the Version Packages PR), and because `CHANGELOG.md` ships in the published tarball (see each package's `files` field), bit.cloud picks it up for the version's release notes on the component page. Write changeset messages for the consumers of your packages — they're what people see next to the version, both on GitHub and on bit.cloud.
+
 ## Why bit.cloud as a registry?
 
 - **Zero migration** — this repo is proof: one `.npmrc` file, standard tooling.

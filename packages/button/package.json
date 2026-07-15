@@ -23,7 +23,8 @@
     "dist",
     "src",
     "!src/**/*.test.*",
-    "*.composition.tsx"
+    "*.composition.tsx",
+    "CHANGELOG.md"
   ],
   "sideEffects": false,
   "keywords": [
