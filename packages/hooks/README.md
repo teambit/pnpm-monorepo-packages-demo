@@ -1,6 +1,6 @@
 # @evinova-demo/hooks
 
-Reusable React hooks for the Evinova demo design system. React `>=18` is a peer dependency.
+Reusable React hooks for the demo design system. React `>=18` is a peer dependency.
 
 ## Install
 

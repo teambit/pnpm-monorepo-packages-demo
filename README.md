@@ -1,4 +1,4 @@
-# Evinova Packages Demo
+# pnpm Monorepo Packages Demo
 
 [![CI](https://github.com/teambit/pnpm-monorepo-packages-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/teambit/pnpm-monorepo-packages-demo/actions/workflows/ci.yml)
 
@@ -11,6 +11,8 @@ The entire Bit integration is **one file** ([`.npmrc`](./.npmrc)) — a registry
 //node-registry.bit.cloud/:_authToken=${BIT_CLOUD_TOKEN}
 always-auth=true
 ```
+
+Packages publish under the `@evinova-demo` placeholder scope — point it at your own bit.cloud org with a single find-and-replace.
 
 Everything else is the tooling your team already uses: pnpm workspaces, TypeScript, vitest, Changesets, GitHub Actions.
 

@@ -1,6 +1,6 @@
 # @evinova-demo/utils
 
-Tiny, framework-free utilities used across the Evinova demo design system.
+Tiny, framework-free utilities used across the demo design system.
 
 ## Install
 

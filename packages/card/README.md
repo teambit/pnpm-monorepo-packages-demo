@@ -13,7 +13,7 @@ pnpm add @evinova-demo/card
 ```tsx
 import { Card } from '@evinova-demo/card';
 
-<Card title="Study overview">
+<Card title="Project overview">
   <p>Everything in this card inherits the shared design tokens.</p>
 </Card>
 ```

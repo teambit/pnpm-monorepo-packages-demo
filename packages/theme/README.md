@@ -1,6 +1,6 @@
 # @evinova-demo/theme
 
-Design tokens for the Evinova demo design system — colors, spacing, radii and typography as plain typed constants. Framework-free.
+Design tokens for the demo design system — colors, spacing, radii and typography as plain typed constants. Framework-free.
 
 ## Install
 

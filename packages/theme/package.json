@@ -1,7 +1,7 @@
 {
   "name": "@evinova-demo/theme",
   "version": "0.1.1",
-  "description": "Design tokens (colors, spacing, radii, typography) for the Evinova demo design system",
+  "description": "Design tokens (colors, spacing, radii, typography) for a demo design system",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 {
   "name": "@evinova-demo/card",
   "version": "0.1.1",
-  "description": "Content card with optional title, built on the Evinova demo theme",
+  "description": "Content card with optional title, built on the demo theme",
   "license": "MIT",
   "repository": {
     "type": "git",

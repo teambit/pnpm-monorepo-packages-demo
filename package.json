@@ -1,5 +1,5 @@
 {
-  "name": "evinova-packages-demo",
+  "name": "pnpm-monorepo-packages-demo",
   "private": true,
   "description": "Demo: publishing packages from a plain pnpm monorepo to bit.cloud — no Bit tooling required",
   "license": "MIT",
