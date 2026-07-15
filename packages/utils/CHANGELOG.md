@@ -1,5 +1,11 @@
 # @evinova-demo/general.utils
 
+## 0.1.5
+
+### Patch Changes
+
+- 31ee968: Exclude test files from published tarballs; component pages show runtime source only.
+
 ## 0.1.4
 
 ### Patch Changes

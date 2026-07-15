@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/general.utils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Tiny framework-free utilities: class-name composition, truncation, date formatting",
   "license": "MIT",
   "repository": {
