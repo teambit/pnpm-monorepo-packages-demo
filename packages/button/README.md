@@ -1,19 +1,19 @@
-# @evinova-demo/button
+# @evinova-demo/general.button
 
-Themeable React button built on [`@evinova-demo/theme`](https://bit.cloud/evinova-demo) tokens.
+Themeable React button built on [`@evinova-demo/general.theme`](https://bit.cloud/evinova-demo) tokens.
 
 ## Install
 
 ```bash
-pnpm add @evinova-demo/button
+pnpm add @evinova-demo/general.button
 ```
 
-Internal dependencies (`@evinova-demo/theme`, `@evinova-demo/utils`) resolve automatically from the same bit.cloud registry.
+Internal dependencies (`@evinova-demo/general.theme`, `@evinova-demo/general.utils`) resolve automatically from the same bit.cloud registry.
 
 ## Usage
 
 ```tsx
-import { Button } from '@evinova-demo/button';
+import { Button } from '@evinova-demo/general.button';
 
 <Button onClick={save}>Save</Button>
 <Button variant="secondary" size="sm">Cancel</Button>

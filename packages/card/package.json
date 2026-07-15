@@ -1,6 +1,6 @@
 {
-  "name": "@evinova-demo/card",
-  "version": "0.1.1",
+  "name": "@evinova-demo/general.card",
+  "version": "0.1.2",
   "description": "Content card with optional title, built on the demo theme",
   "license": "MIT",
   "repository": {
@@ -38,9 +38,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@evinova-demo/theme": "workspace:*",
-    "@evinova-demo/utils": "workspace:*",
-    "@evinova-demo/button": "workspace:*"
+    "@evinova-demo/general.theme": "workspace:*",
+    "@evinova-demo/general.utils": "workspace:*",
+    "@evinova-demo/general.button": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

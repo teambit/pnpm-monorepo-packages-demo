@@ -14,10 +14,10 @@ importers:
 
   packages/button:
     dependencies:
-      '@evinova-demo/theme':
+      '@evinova-demo/general.theme':
         specifier: workspace:*
         version: link:../theme
-      '@evinova-demo/utils':
+      '@evinova-demo/general.utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
@@ -36,13 +36,13 @@ importers:
 
   packages/card:
     dependencies:
-      '@evinova-demo/button':
+      '@evinova-demo/general.button':
         specifier: workspace:*
         version: link:../button
-      '@evinova-demo/theme':
+      '@evinova-demo/general.theme':
         specifier: workspace:*
         version: link:../theme
-      '@evinova-demo/utils':
+      '@evinova-demo/general.utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:

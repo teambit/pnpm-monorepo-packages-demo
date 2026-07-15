@@ -10,11 +10,11 @@ on:
         default: all
         options:
           - all
-          - "@evinova-demo/theme"
-          - "@evinova-demo/utils"
-          - "@evinova-demo/hooks"
-          - "@evinova-demo/button"
-          - "@evinova-demo/card"
+          - "@evinova-demo/general.theme"
+          - "@evinova-demo/general.utils"
+          - "@evinova-demo/general.hooks"
+          - "@evinova-demo/general.button"
+          - "@evinova-demo/general.card"
 
 jobs:
   publish:

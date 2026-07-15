@@ -1,5 +1,5 @@
-import { Card } from '@evinova-demo/card';
-import { Button } from '@evinova-demo/button';
+import { Card } from '@evinova-demo/general.card';
+import { Button } from '@evinova-demo/general.button';
 
 export const WithTitle = () => (
   <Card title="Project overview">

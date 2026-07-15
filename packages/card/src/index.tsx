@@ -1,5 +1,5 @@
-import { colors, font, radii, spacing } from '@evinova-demo/theme';
-import { cx } from '@evinova-demo/utils';
+import { colors, font, radii, spacing } from '@evinova-demo/general.theme';
+import { cx } from '@evinova-demo/general.utils';
 import type { HTMLAttributes } from 'react';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {

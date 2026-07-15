@@ -1,6 +1,6 @@
 {
-  "name": "@evinova-demo/button",
-  "version": "0.1.1",
+  "name": "@evinova-demo/general.button",
+  "version": "0.1.2",
   "description": "Themeable React button - primary, secondary and ghost variants",
   "license": "MIT",
   "repository": {
@@ -38,8 +38,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@evinova-demo/theme": "workspace:*",
-    "@evinova-demo/utils": "workspace:*"
+    "@evinova-demo/general.theme": "workspace:*",
+    "@evinova-demo/general.utils": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

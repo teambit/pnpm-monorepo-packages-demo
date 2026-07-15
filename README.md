@@ -22,7 +22,7 @@ Everything else is the tooling your team already uses: pnpm workspaces, TypeScri
 |---|---|---|
 | Publish packages to bit.cloud with plain `npm`/`pnpm` | [`package.json` scripts](./package.json), any `packages/*` | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
 | Bulk publish (all packages, atomically via `--batch`) | `pnpm publish:all` / [manual workflow](./.github/workflows/publish-manual.yml) | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
-| Individual publish (one package) | `pnpm --filter @evinova-demo/button publish` / manual workflow dropdown | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
+| Individual publish (one package) | `pnpm --filter @evinova-demo/general.button publish` / manual workflow dropdown | [Managing packages](https://bit.cloud/docs/packages/managing-packages) |
 | Automated releases — one atomic batch publish | [Changesets](./.changeset) + [`release.yml`](./.github/workflows/release.yml) | [Publishing packages](https://bit.cloud/docs/packages/publishing-packages) |
 | Registry auth, local and CI, zero secrets in-repo | [`.npmrc`](./.npmrc) + `BIT_CLOUD_TOKEN` | [Configuring .npmrc](https://bit.cloud/docs/packages/configuring-npmrc) |
 | Works alongside npmjs / other registries | scoped registry — only `@evinova-demo/*` touches bit.cloud | [External registries](https://bit.cloud/docs/packages/external-registries) |
@@ -34,24 +34,24 @@ Everything else is the tooling your team already uses: pnpm workspaces, TypeScri
 
 ```mermaid
 graph TD
-    button["@evinova-demo/button"] --> theme["@evinova-demo/theme"]
-    button --> utils["@evinova-demo/utils"]
-    card["@evinova-demo/card"] --> theme
+    button["@evinova-demo/general.button"] --> theme["@evinova-demo/general.theme"]
+    button --> utils["@evinova-demo/general.utils"]
+    card["@evinova-demo/general.card"] --> theme
     card --> utils
-    hooks["@evinova-demo/hooks"]
+    hooks["@evinova-demo/general.hooks"]
 ```
 
 | Package | Description |
 |---|---|
-| [`@evinova-demo/theme`](./packages/theme) | Design tokens — colors, spacing, radii, typography |
-| [`@evinova-demo/utils`](./packages/utils) | Framework-free helpers (`cx`, `truncate`, `formatDate`) |
-| [`@evinova-demo/hooks`](./packages/hooks) | React hooks (`useToggle`, `useDebounce`) |
-| [`@evinova-demo/button`](./packages/button) | Button component consuming theme + utils |
-| [`@evinova-demo/card`](./packages/card) | Card component consuming theme + utils |
+| [`@evinova-demo/general.theme`](./packages/theme) | Design tokens — colors, spacing, radii, typography |
+| [`@evinova-demo/general.utils`](./packages/utils) | Framework-free helpers (`cx`, `truncate`, `formatDate`) |
+| [`@evinova-demo/general.hooks`](./packages/hooks) | React hooks (`useToggle`, `useDebounce`) |
+| [`@evinova-demo/general.button`](./packages/button) | Button component consuming theme + utils |
+| [`@evinova-demo/general.card`](./packages/card) | Card component consuming theme + utils |
 
-Internal dependencies use pnpm's `workspace:*` protocol. At publish time pnpm rewrites them to the real versions (e.g. `0.1.0`), so consumers installing `@evinova-demo/button` pull `theme` and `utils` from the bit.cloud registry automatically.
+Internal dependencies use pnpm's `workspace:*` protocol. At publish time pnpm rewrites them to the real versions (e.g. `0.1.0`), so consumers installing `@evinova-demo/general.button` pull `general.theme` and `general.utils` from the bit.cloud registry automatically.
 
-**How package names map to components.** `@evinova-demo/button` becomes the component `evinova-demo.general/button` on bit.cloud — scope-less package names fall back to the org's `general` scope. Publishing to a scope that doesn't exist yet auto-creates it, so there's no separate provisioning step before the first publish.
+**How package names map to components.** `@evinova-demo/general.button` becomes the component `evinova-demo.general/button` on bit.cloud: the npm scope (`@evinova-demo`) maps to the org, and the segment before the first dot in the name (`general`) is the bit.cloud scope. Scope-less package names like `@evinova-demo/button` fall back to the org's `general` scope instead. Publishing to a scope that doesn't exist yet auto-creates it, so there's no separate provisioning step before the first publish.
 
 ## Quickstart
 
@@ -76,9 +76,9 @@ pnpm test
 ### 3. Publish — your choice of granularity
 
 ```bash
-pnpm publish:dry                                # rehearsal, publishes nothing
-pnpm publish:all                                # bulk: pnpm publish -r --batch — atomic, one request, one Ripple CI build
-pnpm --filter @evinova-demo/button publish      # individual: one package
+pnpm publish:dry                                        # rehearsal, publishes nothing
+pnpm publish:all                                        # bulk: pnpm publish -r --batch — atomic, one request, one Ripple CI build
+pnpm --filter @evinova-demo/general.button publish      # individual: one package
 ```
 
 `publish:all` sends every package to the registry in a single batched request (`pnpm publish -r --batch`): all five publish together or none do. Cross-package links (`workspace:*` → real versions) land correctly in the dependency graph regardless of the order packages are declared in.

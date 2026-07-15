@@ -1,6 +1,6 @@
 {
-  "name": "@evinova-demo/hooks",
-  "version": "0.1.1",
+  "name": "@evinova-demo/general.hooks",
+  "version": "0.1.2",
   "description": "Reusable React hooks: useToggle, useDebounce",
   "license": "MIT",
   "repository": {
