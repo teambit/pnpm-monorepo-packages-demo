@@ -1,5 +1,15 @@
 # @evinova-demo/general.card
 
+## 0.1.5
+
+### Patch Changes
+
+- 31ee968: Exclude test files from published tarballs; component pages show runtime source only.
+- Updated dependencies [31ee968]
+  - @evinova-demo/general.theme@0.1.5
+  - @evinova-demo/general.utils@0.1.5
+  - @evinova-demo/general.button@0.1.5
+
 ## 0.1.4
 
 ### Patch Changes

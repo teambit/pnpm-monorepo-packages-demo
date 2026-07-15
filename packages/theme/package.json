@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/general.theme",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Design tokens (colors, spacing, radii, typography) for a demo design system",
   "license": "MIT",
   "repository": {
