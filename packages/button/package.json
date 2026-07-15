@@ -1,6 +1,6 @@
 {
   "name": "@evinova-demo/general.button",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Themeable React button - primary, secondary and ghost variants",
   "license": "MIT",
   "repository": {

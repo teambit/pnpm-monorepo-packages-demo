@@ -1,5 +1,15 @@
 # @evinova-demo/general.card
 
+## 0.1.6
+
+### Patch Changes
+
+- e93b10f: Ship CHANGELOG.md in the published tarball: notes written in `pnpm changeset` now appear as the version's release notes on bit.cloud.
+- Updated dependencies [e93b10f]
+  - @evinova-demo/general.theme@0.1.6
+  - @evinova-demo/general.utils@0.1.6
+  - @evinova-demo/general.button@0.1.6
+
 ## 0.1.5
 
 ### Patch Changes
